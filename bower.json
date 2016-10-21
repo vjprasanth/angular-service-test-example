@@ -1,0 +1,24 @@
+{
+  "name": "angular-service-test-example",
+  "description": "an example for angular services testing",
+  "main": "",
+  "authors": [
+    "vjprasanth <vjprasanth@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/vjprasanth/angular-service-test-example",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "^1.5.8",
+    "sinon": "http://sinonjs.org/releases/sinon-1.12.1.js"
+  },
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}

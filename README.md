@@ -1,0 +1,1 @@
+An example on how to test a angular service/factory which returns a promise and depends upon another service.
