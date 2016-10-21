@@ -14,31 +14,33 @@ describe('dashboard service', function () {
 
     describe('getPost', function () {
         it('should successfully return a post details', function () {
-            var mockDeferred, result;
+            var mockDeferred;
             mockDeferred = $q.defer();
             spyOn(postServiceMock, 'getPost').and.returnValue(mockDeferred.promise);
-            service.getPost().then(function (data) {
-                result = data;
+            service.getPost().then(function (result) {
+                expect(result.userId).toBe(1);
+                expect(result.id).toBe(1);
+                expect(result.title).toBe('someTitle');
+                expect(result.body).toBe('someBody');
             });
             mockDeferred.resolve(getSuccessMockResponse());
             $rootScope.$apply();
-            expect(result.userId).toBe(1);
-            expect(result.id).toBe(1);
-            expect(result.title).toBe('someTitle');
-            expect(result.body).toBe('someBody');
+
         });
 
         it('should  return an error when not able to retrieve post details ', function () {
-            var mockDeferred, result;
+            var mockDeferred;
             mockDeferred = $q.defer();
             spyOn(postServiceMock, 'getPost').and.returnValue(mockDeferred.promise);
+
             service.getPost().then(function (error) {
-                result = error;
+                expect(error.code).toBe(12345);
+                expect(error.message).toBe('someMessage');
+
             });
             mockDeferred.reject(getFailureMockResponse());
             $rootScope.$apply();
-            expect(result.code).toBe(12345);
-            expect(result.message).toBe('someMessage');
+
         });
     });
 

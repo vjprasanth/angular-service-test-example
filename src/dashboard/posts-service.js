@@ -16,7 +16,7 @@
 
             console.log('from the postService getpost');
 
-            return $http.get('http://jsonplaceholder.typicode.com/posts/' + postId)
+            return $http.get('http://someUrl.com/' + postId)
                 .then(getPostComplete)
                 .catch(getPostFailed);
 
