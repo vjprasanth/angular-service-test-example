@@ -14,9 +14,6 @@
                 .then(function(data) {
                     return data.data
                 })
-                .catch(function(error) {
-                    return error.error;
-                });
         }
 
     }

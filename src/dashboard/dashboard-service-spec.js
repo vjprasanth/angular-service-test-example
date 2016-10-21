@@ -33,9 +33,9 @@ describe('dashboard service', function () {
             mockDeferred = $q.defer();
             spyOn(postServiceMock, 'getPost').and.returnValue(mockDeferred.promise);
 
-            service.getPost().then(function (error) {
-                expect(error.code).toBe(12345);
-                expect(error.message).toBe('someMessage');
+            service.getPost().catch(function (data) {
+                expect(data.error.code).toBe(12345);
+                expect(data.error.message).toBe('someMessage');
 
             });
             mockDeferred.reject(getFailureMockResponse());
