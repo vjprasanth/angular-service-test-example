@@ -17,13 +17,14 @@ describe('dashboard service', function () {
             var mockDeferred;
             mockDeferred = $q.defer();
             spyOn(postServiceMock, 'getPost').and.returnValue(mockDeferred.promise);
+            mockDeferred.resolve(getSuccessMockResponse());
             service.getPost().then(function (result) {
                 expect(result.userId).toBe(1);
                 expect(result.id).toBe(1);
                 expect(result.title).toBe('someTitle');
                 expect(result.body).toBe('someBody');
             });
-            mockDeferred.resolve(getSuccessMockResponse());
+            expect(postServiceMock.getPost).toHaveBeenCalled();
             $rootScope.$apply();
 
         });
@@ -32,13 +33,14 @@ describe('dashboard service', function () {
             var mockDeferred;
             mockDeferred = $q.defer();
             spyOn(postServiceMock, 'getPost').and.returnValue(mockDeferred.promise);
+            mockDeferred.reject(getFailureMockResponse());
 
-            service.getPost().catch(function (data) {
-                expect(data.error.code).toBe(12345);
-                expect(data.error.message).toBe('someMessage');
+            service.getPost().catch(function (error) {
+                expect(error.code).toBe(12345);
+                expect(error.message).toBe('someMessage');
 
             });
-            mockDeferred.reject(getFailureMockResponse());
+            expect(postServiceMock.getPost).toHaveBeenCalled();
             $rootScope.$apply();
 
         });
